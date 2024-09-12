@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package account;
+
+option go_package = "./genproto";
+
+service AccountService {
+	rpc GetAccount(GetAccountRequest) returns (GetAccountResponse);
+	rpc GetAccounts(stream GetAccountsRequest) returns (stream GetAccountsResponse);
+}
+
+message GetAccountRequest {
+	string ethereum_address = 1;
+	string crypto_signature = 2;
+}
+
+message GetAccountResponse {
+    string gastoken_balance = 1;
+    uint64 wallet_nonce = 2;
+}
+
+message GetAccountsRequest {
+    string ethereum_address = 1;
+    string erc20_token_address = 2;
+}
+
+message GetAccountsResponse {
+    string ethereum_address = 1;
+    string erc20_balance = 2;
+}
+
